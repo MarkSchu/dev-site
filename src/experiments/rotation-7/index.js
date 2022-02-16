@@ -25,16 +25,16 @@ function Circles() {
     element('div', {className: 'outer'},
       element('div', {className: 'inner'},
         repeatfor(20, (i) =>
-          Box(i, {top: '25%', left: '25%', color: '#FF499E', animation: 'rotate1'})
+          Box(i, {top: '25%', left: '25%', color: '#FF499E', animation: 'rotation7-1'})
         ),
         repeatfor(20, (i) =>
-          Box(i, {top: '15%', left: '15%', color: '#D264B6', animation: 'rotate2'})
+          Box(i, {top: '15%', left: '15%', color: '#D264B6', animation: 'rotation7-2'})
         ),
         repeatfor(20, (i) =>
-          Box(i, {top: '20%', left: '20%', color: '#779BE7', animation: 'rotate3'})
+          Box(i, {top: '20%', left: '20%', color: '#779BE7', animation: 'rotation7-3'})
         ),
         repeatfor(20, (i) =>
-          Box(i, {top: '15%', left: '20%', color: '#49B6FF', animation: 'rotate4'})
+          Box(i, {top: '15%', left: '20%', color: '#49B6FF', animation: 'rotation7-4'})
         ),
       )
     )

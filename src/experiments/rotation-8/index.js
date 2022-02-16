@@ -8,13 +8,10 @@ function Box(i) {
   const length = (i * 25) + 'px';
   el.style.top = window.innerHeight/2 - (length/2) + 'px';
   el.style.left = window.innerWidth/2 - (length/2) + 'px';
-  // el.style.top ='10px';
-  // el.style.left = '10px';
   el.style.width = length;
   el.style.height = length;
   el.style.border = `1px solid #D63230`;
-  // el.style.opacity = 1/i;
-  el.style['animation'] = 'rotate';
+  el.style['animation'] = 'rotation8';
   el.style['animation-duration'] = '10s';
   el.style['timing-function'] = 'linear';
   el.style['animation-delay'] = i/30 + 's';

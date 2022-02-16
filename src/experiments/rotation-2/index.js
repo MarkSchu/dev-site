@@ -1,7 +1,7 @@
 import { element } from 'utils/dom';
 import './style.css';
 
-function Circles() {
+function Boxes() {
   return (
     element('div', {className: 'outer'},
       element('div', {className: 'inner'},
@@ -17,7 +17,7 @@ function Circles() {
 export default function Rotation2() {
   return (
     element('div', {className: 'rotation2'},
-      Circles()
+      Boxes()
     )
   )
 }

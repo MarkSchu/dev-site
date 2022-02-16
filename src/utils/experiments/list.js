@@ -1,8 +1,8 @@
 export const experimentList = [
   
     {
-      name: 'infinite scroll',
-      href: 'experiments/infinite-scroll'
+      name: 'drop shadow-1',
+      href: 'experiments/drop-shadow-1'
     },
 
     {

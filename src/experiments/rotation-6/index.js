@@ -12,7 +12,7 @@ function Box(i) {
   el.style.height = length;
   el.style.border = '1px solid #61E8E1';
   el.style.opacity = 2/i;
-  el.style['animation'] = 'rotate';
+  el.style['animation'] = 'rotation6';
   el.style['animation-duration'] = '10s';
   el.style['timing-function'] = 'linear';
   el.style['animation-delay'] = i/30 + 's';
@@ -20,7 +20,7 @@ function Box(i) {
   return el;
 }
 
-function Circles() {
+function Boxes() {
   return (
     element('div', {className: 'outer'},
       element('div', {className: 'inner'},
@@ -33,7 +33,7 @@ function Circles() {
 export default function Rotation6() {
   return (
     element('div', {className: 'rotation6'},
-      Circles()
+      Boxes()
     )
   )
 }

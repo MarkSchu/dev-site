@@ -1,4 +1,4 @@
-import InfiniteScroll from 'experiments/infinite-scroll';
+import DropShadow1 from 'experiments/drop-shadow-1';
 import Rotation1 from 'experiments/rotation-1';
 import Rotation2 from 'experiments/rotation-2';
 import Rotation3 from 'experiments/rotation-3';
@@ -10,9 +10,9 @@ import Rotation8 from 'experiments/rotation-8';
 
 
 export function getExperiment(path) {
-
-  if (path === '/experiments/infinite-scroll') {
-    return InfiniteScroll();
+  
+  if (path === '/experiments/drop-shadow-1') {
+    return DropShadow1();
   }
   if (path === '/experiments/rotation-1') {
     return Rotation1();

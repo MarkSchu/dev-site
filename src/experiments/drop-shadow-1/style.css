@@ -1,0 +1,19 @@
+.drop-shadow-1 {
+  background-color: black;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.glow-stick-1 {
+  position: absolute;
+  height: 300px;
+  width: 5px;
+  top: 30%;
+  left: 50%;
+  background-color: #00ff00;
+  filter: drop-shadow(0px 0px 19px #fff) drop-shadow(0px 0px 7px #00ff00);
+  border-radius: 10px
+}

@@ -1,3 +1,17 @@
+function removeChildren(parent, children) {
+  children.forEach((child) => {
+    parent.removeChild(child);
+  });
+}
+
+function addChildren(parent, children) {
+  children.forEach(child => parent.appendChild(child));
+}
+
+function toListOfChildren(children) {
+  return [children].flat();
+}
+
 function addAttrs(el, attrs) {
   for (const attr in attrs) {
     el[attr] = attrs[attr];
@@ -26,6 +40,20 @@ export function repeatfor(n, createElement) {
     children.push(createElement(i));
   }
   return children;
+}
+
+export function bind(state, callback) {
+  let oldChildren = toListOfChildren(callback(state, state.data));
+  state.on('*', () => {
+    let newChildren = toListOfChildren(callback(state, state.data));
+    let parent = oldChildren[0].parentElement;
+    if (parent) {
+      removeChildren(parent, oldChildren);
+      addChildren(parent, newChildren);
+    }
+    oldChildren = newChildren;
+  });
+  return oldChildren;
 }
 
 export function onpathchange(callback) {

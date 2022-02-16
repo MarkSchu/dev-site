@@ -1,6 +1,6 @@
 import { element, repeat, bind } from 'utils/dom';
 import { Observable } from 'utils/Observable';
-import 'pages/experiments/table-with-sorting/style.css';
+import './style.css';
 
 const rows = [
   ['Marmot CWM'],

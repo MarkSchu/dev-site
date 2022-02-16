@@ -4,8 +4,7 @@
   width: 100%;
 }
 
-
-@keyframes rotate {
+@keyframes rotation3 {
   0% {
     transform: rotate(0deg);
   }

@@ -5,7 +5,7 @@
   background-color: black;
 }
 
-@keyframes rotate1 {
+@keyframes rotation7-1 {
   0% {
     transform: rotate(0deg);
   }
@@ -14,7 +14,7 @@
   }
 }
 
-@keyframes rotate2 {
+@keyframes rotation7-2 {
   0% {
     transform: rotate(0deg);
   }
@@ -23,7 +23,7 @@
   }
 }
 
-@keyframes rotate3 {
+@keyframes rotation7-3 {
   0% {
     transform: rotate(0deg);
   }
@@ -35,8 +35,8 @@
   }
 }
 
-@keyframes rotate4 {
-  % {
+@keyframes rotation7-4 {
+  0% {
     transform: rotate(0deg);
   }
   50% {

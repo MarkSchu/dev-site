@@ -12,7 +12,7 @@ function Box(i) {
   el.style.height = length;
   el.style.border = '1px solid white';
   el.style.borderTop = '1px solid red';
-  el.style['animation'] = 'rotate';
+  el.style['animation'] = 'rotation4';
   el.style['animation-duration'] = '10s';
   el.style['timing-function'] = 'linear';
   el.style['animation-delay'] = i/30 + 's';

@@ -4,7 +4,7 @@
   "description": "Mark Schumaker's dev site",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "node build-experiment-data && webpack",
     "watch": "webpack --watch",
     "start": "netlify dev"
   },

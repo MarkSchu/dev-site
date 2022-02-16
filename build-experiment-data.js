@@ -27,6 +27,9 @@ let objectExpressions = '';
 
 filenames.forEach((filename) => {
   const name = getName(filename);
+  if (name.includes('DS_Store')) {
+    return;
+  }
   const component = getComponent(filename);
   const path = getPath(filename);
   importStatements += `import ${component} from '${path}';\n`;
