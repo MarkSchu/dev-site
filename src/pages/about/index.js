@@ -11,16 +11,20 @@ const options = [
     href: 'https://nodejs.org/en/'
   },
   {
+    name: 'React',
+    href: 'https://reactjs.org/'
+  },
+  {
+    name: 'TypeScript',
+    href: 'https://www.typescriptlang.org/'
+  },
+  {
     name: 'HTML',
     href: 'https://developer.mozilla.org/en-US/docs/Web/HTML'
   },
   {
     name: 'CSS',
     href: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
-  },
-  {
-    name: 'React',
-    href: 'https://reactjs.org/'
   },
   {
     name: 'Redux',
