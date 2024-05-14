@@ -1,0 +1,28 @@
+.rotation5 .inner {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+@keyframes rotation5 {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(20deg);
+  }
+  30% {
+    transform: rotate(-30deg);
+  }
+  35% {
+    transform: rotate(35deg);
+  }
+  60% {
+    transform: rotate(-10deg);
+  }
+}
+
+.rotation5 .box {
+  position: absolute;
+}

@@ -1,0 +1,45 @@
+.rotation3 .inner {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes rotation3 {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(60deg);
+  }
+  20% {
+    transform: rotate(20deg);
+  }
+  30% {
+    transform: rotate(120deg);
+  }
+  40% {
+    transform: rotate(160deg);
+  }
+  50% {
+    transform: rotate(120deg);
+  }
+  60% {
+    transform: rotate(230deg);
+  }
+  70% {
+    transform: rotate(280deg);
+  }
+  80% {
+    transform: rotate(320deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate();
+  }
+}
+
+.rotation3 .box {
+  position: absolute;
+}
