@@ -34,7 +34,7 @@ export default function HomePage() {
       element('div', {},
         HeaderMenu(),
         element('h1', {className: 'title', textContent: 'Mark Schumaker'}),
-        element('p', {className: 'text', textContent: "I'm a front-end developer living in Austin, TX. 🌮"}),
+        element('p', {className: 'text', textContent: "I'm a front-end developer living in Richmond, VA. 👋"}),
         Menu(options)
       )
     )

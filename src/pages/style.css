@@ -6,6 +6,8 @@ body {
   display: flex;
   justify-content: center;
   font-family: 'Courier New';
+  padding: 32px;
+  padding-bottom: 64px;
 }
 
 .page > div {

@@ -81,9 +81,20 @@ export default function AboutPage() {
     element('div', {className: 'page'},
       element('div', {},
         HeaderMenu(),
-        element('h1', {className: 'title', textContent: 'About'}),
-        element('p', {className: 'text', textContent: 'Hey, my name is Mark Schumaker. 👋'}),
-        element('p', {className: 'text', textContent: 'I currently work at Zello in Austin, TX. Here are some of the tools that I use:'}),
+        element('h1', {
+            className: 'title',
+            textContent: 'About'}),
+        element('p', {
+            className: 'text',
+            textContent: 'Hey, my name is Mark Schumaker. 🙂'}),
+        element('p', {
+            className: 'text', 
+            innerHTML: `The <b>front-end</b> is my speciality, but I've got <b>back-end</b> experience too.`
+        }),
+        element('p', {
+            className: 'text', 
+            innerHTML: `Here are some of the tools I use:`
+        }),
         Menu(options)
       )
     )

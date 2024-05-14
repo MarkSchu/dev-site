@@ -23,11 +23,11 @@ export function HeaderMenu() {
   return (
     element('div', {className: 'header-menu'},
       element('a', {
-        textContent: '🌮',
+        textContent: '👋',
         href: '/'
       }),
       element('a', {
-        textContent: '👋',
+        textContent: '🙂',
         href: '/about'
       }),
       element('a', {
