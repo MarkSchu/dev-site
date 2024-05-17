@@ -36,3 +36,7 @@ body {
   margin-right: 12px;
   text-decoration: none;
 }
+
+.page .experiment-list a {
+    margin-right: 8px;
+}

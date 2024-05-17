@@ -1,4 +1,4 @@
-import { element, repeat } from 'utils/dom';
+import { element, repeat } from 'utils/dom.js';
 
 function Option(item) {
   return (

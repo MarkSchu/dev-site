@@ -4,20 +4,11 @@
   "description": "Mark Schumaker's dev site",
   "main": "index.js",
   "scripts": {
-    "build": "node build-experiment-data && webpack",
-    "watch": "webpack --watch",
     "start": "netlify dev"
   },
   "author": "Mark Schumaker",
   "license": "ISC",
   "devDependencies": {
-    "css-loader": "^6.5.1",
-    "mini-css-extract-plugin": "^2.5.3",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.67.0",
-    "webpack-cli": "^4.9.2"
-  },
-  "dependencies": {
-    "netlify": "^10.1.2"
+    "netlify-cli": "^13.2.1"
   }
 }

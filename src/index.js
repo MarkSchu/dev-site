@@ -1,10 +1,8 @@
-import { element, onpathchange } from 'utils/dom';
-import HomePage from 'pages/home';
-import AboutPage from 'pages/about';
-import ContactPage from 'pages/contact';
-import ExperimentsPage from 'pages/experiments';
-import { getExperiment } from 'utils/experiments/get-experiment';
-import 'pages/style.css';
+import { element, onpathchange } from 'utils/dom.js';
+import HomePage from 'pages/home/home.js';
+import AboutPage from 'pages/about/about.js';
+import ContactPage from 'pages/contact/contact.js';
+import ExperimentsPage from 'pages/experiments/experiments.js';
 
 function NotFound() {
   return (

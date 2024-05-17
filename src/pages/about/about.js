@@ -1,5 +1,5 @@
-import { element } from 'utils/dom';
-import { Menu, HeaderMenu } from 'pages/shared';
+import { element } from 'utils/dom.js';
+import { Menu, HeaderMenu } from 'pages/shared.js';
 
 const options = [
   {
