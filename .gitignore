@@ -1,5 +1,4 @@
 node_modules
-dist/main.js
 archive
 .netlify
 **/.DS_Store
