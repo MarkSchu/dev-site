@@ -37,6 +37,19 @@ export default function ExperimentsPage() {
                         textContent: 'code',
                         href: 'https://github.com/MarkSchu/drop-shadow-tool'
                     })
+                ),
+
+                element('div', {},
+                    element('h4', {textContent: 'JavaScript Date Reference'}),
+                    element('p', {textContent: 'Ever want to see what each JavaScript Date method returns in one place? Here it is!'}),
+                    element('a', {
+                        textContent: 'See here',
+                        href: 'https://javascript-date-tool.netlify.app/'
+                    }),
+                    element('a', {
+                        textContent: 'code',
+                        href: 'https://github.com/MarkSchu/drop-shadow-tool'
+                    })
                 )
             )
         )
