@@ -93,7 +93,7 @@ export default function AboutPage() {
             textContent: 'Hey, my name is Mark Schumaker. 🙂'}),
         element('p', {
             className: 'text', 
-            innerHTML: `The <b>front-end</b> is my speciality, but I've got <b>back-end</b> experience too.`
+            innerHTML: `I've got experience on both the <b>front-end</b> and <b>back-end</b>.`
         }),
         element('p', {
             className: 'text', 
