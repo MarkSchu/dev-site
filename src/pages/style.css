@@ -36,6 +36,14 @@ body {
   margin-right: 12px;
   text-decoration: none;
 }
+/* 
+.page .header-menu a #item-name {
+    display: none;
+}
+
+.page .header-menu a:hover #item-name {
+    display: inline;
+} */
 
 .page .experiment-list a {
     margin-right: 8px;

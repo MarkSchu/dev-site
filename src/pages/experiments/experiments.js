@@ -30,7 +30,7 @@ export default function ExperimentsPage() {
                     element('h4', {textContent: 'Dropshadow Tool'}),
                     element('p', {textContent: 'A tool made with Vanilla JS that allows you to play around with the drop shadow effect on an svg.'}),
                     element('a', {
-                        textContent: 'play',
+                        textContent: 'see',
                         href: 'https://dropshadowtool.netlify.app/'
                     }),
                     element('a', {
@@ -43,7 +43,7 @@ export default function ExperimentsPage() {
                     element('h4', {textContent: 'JavaScript Date Reference'}),
                     element('p', {textContent: 'Ever want to see what each JavaScript Date method returns in one place? Here it is!'}),
                     element('a', {
-                        textContent: 'See here',
+                        textContent: 'see',
                         href: 'https://javascript-date-tool.netlify.app/'
                     }),
                     element('a', {
