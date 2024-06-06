@@ -90,10 +90,22 @@ export default function AboutPage() {
             textContent: 'About'}),
         element('p', {
             className: 'text',
-            textContent: 'Hey, my name is Mark Schumaker. 🙂'}),
+            textContent: 'Hi, my name is Mark Schumaker. 🙂'}),
         element('p', {
             className: 'text', 
-            innerHTML: `I've got experience on both the <b>front-end</b> and <b>back-end</b>.`
+            innerHTML: `I'm a <b>full-stack</b> developer with over <b>10 years</b> of experience.`
+        }),
+        element('p', {
+            className: 'text', 
+            innerHTML: `I pivoted to a career in software engineering after working on my Masters in Philosophy.`
+        }),
+        element('p', {
+            className: 'text', 
+            innerHTML: `I'm proficient at front-end and back-end code, with a preference for the <b>front-end</b>.`
+        }),
+        element('p', {
+            className: 'text', 
+            innerHTML: `Most of the code I write is from the world of JavaScript - mainly <b>TypeScript</b>, <b>React</b>, and <b>Node</b> - but I've got plenty of experience with other languages and frameworks.`
         }),
         element('p', {
             className: 'text', 

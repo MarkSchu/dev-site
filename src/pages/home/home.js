@@ -24,7 +24,7 @@ const options = [
   },
   {
     name: 'resume',
-    href: 'resume.pdf'
+    href: 'resume-fs.pdf'
   },
 ];
 
@@ -34,7 +34,11 @@ export default function HomePage() {
       element('div', {},
         HeaderMenu(),
         element('h1', {className: 'title', textContent: 'Mark Schumaker'}),
-        element('p', {className: 'text', textContent: "I'm full-stack engineer living in Richmond, VA. 👋"}),
+        element('p', {className: 'text', innerHTML: "I'm a <b>full-stack</b> engineer living in Richmond, VA. 👋"}),
+        element('p', {
+            className: 'text', 
+            innerHTML: `<b>10 years</b> of experience. Work mostly with React, TypeScript, and Node.`
+        }),
         Menu(options)
       )
     )
