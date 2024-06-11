@@ -48,7 +48,7 @@ export default function ExperimentsPage() {
                     }),
                     element('a', {
                         textContent: 'code',
-                        href: 'https://github.com/MarkSchu/drop-shadow-tool'
+                        href: 'https://github.com/MarkSchu/javascript-date-tool'
                     })
                 )
             )
