@@ -1,19 +1,64 @@
-:root {
-    
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    padding: 4rem 3rem;
+    padding: 0rem 3rem;
+    font-family: "Noto Sans", sans-serif;
+    background-color: white;
 }
 
 main {
-    font-family: "Noto Sans", sans-serif;
-    background-color: white;
     max-width: 600px;
+    margin-left: 4rem;
+}
+
+nav {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color:#122C34;
+    margin-left: 2rem;
+    font-weight: bold;
+    transition: 0.1s ease-in;
+}
+
+nav a:hover {
+    color: #44CFCB;
+}
+
+#about,
+#work,
+#skills,
+#experience {
+    scroll-margin-top: 4rem;
+}
+
+.resume {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    /* light */
+    background-color: white;
+    border: 1px solid #44CFCB;
+    color: black;
+    box-shadow: 0rem 0rem #44CFCB;
+    transition: box-shadow 0.25s ease-out;
+}
+
+.resume:hover {
+    box-shadow: 0.2rem 0.2rem #44CFCB;
+    color: black;
 }
 
 header {
     margin-bottom: 8rem;
+    margin-top: 8rem;
 }
 
 header h1 {
@@ -67,6 +112,10 @@ section h2 {
 section p {
     line-height: 1.75;
     color: #122C34;
+}
+
+.skill-list {
+    padding: 1rem 0 1rem 1rem;
 }
 
 .pill {
