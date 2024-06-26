@@ -58,7 +58,7 @@ function App() {
         element('a', {
           className: 'resume',
           textContent: 'Resume',
-          href: '',
+          href: '/mark-schumaker-resume.pdf',
         })
       ),
       element('main', {},
@@ -76,7 +76,8 @@ function App() {
             been doing it for 10 years.`}
           ),
           element('p', {textContent: `When I'm away from my computer, I like to spend time with my family and friends, 
-            read philosophy books, and hike.`})
+            read philosophy books, and hike.`}),
+            element('p', {textContent: `I live in Richmond, VA.`})
         ),
 
         element('section', {id: 'work'},
@@ -100,6 +101,12 @@ function App() {
             I love to teach and explain ideas to others, I'm adaptable, and I can provide leadership to 
             junior developers. I think my greatest strength is knowing how to learn. 
             I feel like I can learn pretty much anything.`}),
+        ),
+
+        element('section', {id: 'contact'}, 
+          element('h2', {textContent: 'Contact'}),
+          element('p', {textContent: `m.schumaker235@gmail.com`}),
+          element('p', {textContent: `248-933-1738`}),
         ),
 
         element('footer', {innerHTML: 'created by mark | in vanilla js | deployed on netlify'})
