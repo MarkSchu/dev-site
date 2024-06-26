@@ -11,10 +11,6 @@ const options = [
     href: '/contact'
   },
   {
-    name: 'experiments',
-    href: '/experiments'
-  },
-  {
     name: 'github',
     href: 'https://github.com/markschu'
   },

@@ -52,13 +52,6 @@ export function HeaderMenu() {
                 href: '/contact',
                 name: 'contact'
             }),
-            element('a', {
-                onmouseover: handleMouseOver, 
-                onmouseout: handleMouseOut,
-                textContent: '🧪',
-                href: '/experiments',
-                name: 'experiments'
-            }),
             element('span', {
                 id: 'item-name'
             })
