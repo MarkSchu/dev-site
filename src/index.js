@@ -56,10 +56,6 @@ function App() {
           href: '#skills',
         }),
         element('a', {
-          textContent: 'Experience',
-          href: '#experience',
-        }),
-        element('a', {
           className: 'resume',
           textContent: 'Resume',
           href: '',
@@ -69,7 +65,8 @@ function App() {
         element('header', {},
           element('h1', {innerHTML: 'Mark Schumaker'}),
           element('h2', {textContent: 'Frontend Engineer'}),
-          element('p', {textContent: 'I build apps and websites with JavaScript'})
+          element('p', {textContent: 'I build apps and websites with JavaScript'}),
+          element('div', {className: 'email', textContent: 'm.schumaker235@gmail.com'})
         ),
         element('section', {id: 'about'},
           element('h2', {textContent: 'ABOUT'}),
@@ -96,18 +93,16 @@ function App() {
 
         element('section', {id: 'skills'}, 
           element('h2', {textContent: 'SKILLS'}),
-          element('p', {textContent: `Here are a few technical skills I have.`}),
           repeat('div', {className: 'skill-list'}, skills, (skill) =>
             element('div', {className: 'pill', textContent: skill})
           ),
           element('p', {innerHTML: `On the <b>soft skill</b> side of things, I'm a good communicator, a strong creative problem solver, 
-            love to teach and explain ideas to others, adaptable, and can provide leadership to 
-            junior developers. I think my greatest strength, however, is knowing how to learn. I feel like I can learn pretty much anything.`}),
+            I love to teach and explain ideas to others, I'm adaptable, and I can provide leadership to 
+            junior developers. I think my greatest strength is knowing how to learn. 
+            I feel like I can learn pretty much anything.`}),
         ),
 
-        element('section', {id: 'experience'}, 
-          element('h2', {textContent: 'EXPERIENCE'}),
-        )
+        element('footer', {innerHTML: 'created by mark | in vanilla js | deployed on netlify'})
       )
     )
   )
@@ -116,5 +111,3 @@ function App() {
 document.body.appendChild(
   App()
 );
-
-// https://v4.brittanychiang.com/
