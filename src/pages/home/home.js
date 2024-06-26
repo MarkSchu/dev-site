@@ -26,7 +26,7 @@ export default function HomePage() {
       element('div', {},
         HeaderMenu(),
         element('h1', {className: 'title', textContent: 'Mark Schumaker'}),
-        element('p', {className: 'text', innerHTML: "I'm a <b>full-stack</b> engineer with a preference for the <b>front-end</b>. 👋"}),
+        element('p', {className: 'text', innerHTML: "I'm a <b>front-end</b> engineer with <b>full-stack</b> experience.</b>. 👋"}),
         element('p', {
             className: 'text', 
             innerHTML: `<b>10 years</b> of experience. Work mostly with React, TypeScript, and Node.`

@@ -2,7 +2,6 @@ import { element, onpathchange } from 'utils/dom.js';
 import HomePage from 'pages/home/home.js';
 import AboutPage from 'pages/about/about.js';
 import ContactPage from 'pages/contact/contact.js';
-import ExperimentsPage from 'pages/experiments/experiments.js';
 
 function NotFound() {
   return (
@@ -25,10 +24,6 @@ function App() {
 
         if (path === '/contact') {
           return ContactPage();
-        }
-
-        if (path === '/experiments') {
-          return ExperimentsPage();
         }
 
         if (path.startsWith('/experiments')) {
