@@ -103,8 +103,9 @@ function App() {
             about simple solutions, avoiding complexity, and writing code that is both readable and adaptable.`}
           ),
           element('p', {innerHTML: `I'm also passionate about learning and have experience with loads of other
-            technologies from Python to Haskell to WebGL. And I've spent a lot of time mulling over more abstract topics like
-            software architecture, design, and programming paradigms.`}
+            technologies from Python to Haskell to WebGL. I spend a lot of time mulling over more abstract topics like
+            software architecture, design, and programming paradigms. Right now, I'm reading through 
+            "A Philosophy of Software Design" by John Ousterhout.`}
           )
         ),
 
