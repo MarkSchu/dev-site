@@ -67,10 +67,22 @@ function App() {
       ),
       element('main', {},
         element('header', {},
-          element('h1', {innerHTML: 'Mark Schumaker'}),
+          element('h1', {innerHTML: 'Mark <br/>Schumaker'}),
           element('h2', {textContent: 'Frontend Engineer'}),
           element('p', {textContent: 'I build apps and websites with JavaScript'}),
-          element('div', {className: 'email', textContent: 'm.schumaker235@gmail.com'})
+          element('div', {className: 'links-email'},
+            element('a', {href: 'https://github.com/markschu'},
+              element('img', {
+                src: './assets/github-mark.png'
+              })
+            ),
+            element('a', {href: 'https://www.linkedin.com/in/mark-schumaker-5980a0a2/'},
+              element('img', {
+                src: './assets/LI-in-Bug.png'
+              })
+            ),
+            element('div', {className: 'email', textContent: 'm.schumaker235@gmail.com'})
+          )
         ),
         element('section', {id: 'about'},
           element('h2', {textContent: 'ABOUT'}),

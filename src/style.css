@@ -93,10 +93,22 @@ header p {
     border: 1px solid #2A4494;
 }
 
+header .links-email {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+
 header .email {
-    margin-top: 1.75rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: bold;
+}
+
+img {
+    filter: brightness(0%);
+    height: 2rem;
+    display: block;
+    margin-right: 1rem;
 }
 
 section {
@@ -169,5 +181,13 @@ footer {
         padding: 0;
         border: none;
         
+    }
+
+    img {
+        height: 1.5rem;
+    }
+
+    header .email {
+        font-size: 0.75rem;
     }
 }
