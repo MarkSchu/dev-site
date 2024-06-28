@@ -99,7 +99,8 @@ function App() {
         element('section', {id: 'work'},
           element('h2', {textContent: 'WORK'}),
           element('p', {innerHTML: `My main focus these days is building Node apps with React, TypeScript,
-            and other tools in the JavaScript Ecosystem. I've been doing that for 8 years. I'm passionate
+            and other tools in the JavaScript Ecosystem. I've been doing that for 8 years. 
+            Even though I prefer the frontend, I have loads of <b>Full-Stack</b> experience and really enjoy those roles too. I'm passionate
             about simple solutions, avoiding complexity, and writing code that is both readable and adaptable.`}
           ),
           element('p', {innerHTML: `I'm also passionate about learning and have experience with loads of other
