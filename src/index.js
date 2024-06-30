@@ -1,10 +1,11 @@
+const postBaseURL = 'https://raw.githubusercontent.com/MarkSchu/writing-on-software/main';
+
 function setStyles(el, attrs) {
   const styles = attrs['style'];
   for (var style in styles) {
       el.style[style] = styles[style];
   }
 }
-
 
 function setAttributes(el, attrs) {
   for (const attr in attrs) {
@@ -39,32 +40,99 @@ const skills = [
   'RESTful APIs', 'Responsive Design', 'A11y'
 ];
 
-function App() {
+function Nav() {
+  return (
+    element('nav', {},
+      element('a', {
+        textContent: 'About',
+        href: '#about',
+      }),
+      element('a', {
+        textContent: 'Work',
+        href: '#work',
+      }),
+      element('a', {
+        textContent: 'Skills',
+        href: '#skills',
+      }),
+      element('a', {
+        textContent: 'Contact',
+        href: '#contact',
+      }),
+      element('a', {
+        className: 'resume',
+        textContent: 'Resume',
+        href: '/mark-schumaker-resume.pdf',
+      })
+    )
+  )
+}
+
+function Footer() {
+ return (
+  element('footer', {innerHTML: 'created by mark | in vanilla js | deployed on netlify'})
+ )
+}
+
+function Post() {
+
+  let article;
+
+  const onPostLoad = (html) => {
+    article.innerHTML = html;
+  }
+  
+  fetch(`https://raw.githubusercontent.com/MarkSchu/writing-on-software/main/foo/bar.html`)
+  .then((response) => {
+    // if response.ok
+    return response.text()
+  })
+  .then((html) => {
+    onPostLoad(html);
+  })
+  .catch((err) => {
+    console.log(err)
+    alert('Broken.')
+  });
+  
   return (
     element('div', {},
-      element('nav', {},
-        element('a', {
-          textContent: 'About',
-          href: '#about',
-        }),
-        element('a', {
-          textContent: 'Work',
-          href: '#work',
-        }),
-        element('a', {
-          textContent: 'Skills',
-          href: '#skills',
-        }),
-        element('a', {
-          textContent: 'Contact',
-          href: '#contact',
-        }),
-        element('a', {
-          className: 'resume',
-          textContent: 'Resume',
-          href: '/mark-schumaker-resume.pdf',
-        })
-      ),
+      Nav(),
+      article = element('article', {}),
+      Footer()
+    )
+  )
+}
+
+function App() {
+
+  let listWrapper;
+
+  const onPostsLoad = (posts) => {
+    listWrapper.appendChild(
+      repeat('ol', {}, posts, ({name, url}) =>
+        element('li', {},
+          element('a', {
+            textContent: name,
+            href: url,
+          })
+        )
+      )
+    )
+  }
+
+  const fetchRecentPosts = () => {
+    return fetch(`${postBaseURL}/published.json`)
+    .then(response => response.json())
+    .then(onPostsLoad)
+    .catch((e) => alert('something went wrong fetching posts'))
+  }
+
+  fetchRecentPosts();
+  
+  return (
+    element('div', {},
+      Nav(),
       element('main', {},
         element('header', {},
           element('h1', {innerHTML: 'Mark <br/>Schumaker'}),
@@ -127,12 +195,22 @@ function App() {
           element('p', {textContent: `248-933-1738`}),
         ),
 
-        element('footer', {innerHTML: 'created by mark | in vanilla js | deployed on netlify'})
-      )
+        element('section', {id: 'writing'},
+          element('h2', {textContent: 'Writing'}),
+          element('p', {textContent: `I really like to think about software design, so I decided to start writing as a way 
+            think through ideas and clarify my thoughts. Currently, I'm reading though a book called "The Philosophy of 
+            Software Design" by John Ousterhout and responding to it.
+          `}),
+          listWrapper = element('div', {})
+        )
+      ),
+      Footer()
     )
   )
 }
 
 document.body.appendChild(
-  App()
+  window.location.pathname === '/'
+  ? App()
+  : Post()
 );
