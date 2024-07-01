@@ -43,39 +43,37 @@ function Nav() {
 
   const { pathname } = window.location;
   
+  if (pathname !== '/') {
+    return (
+      element('nav', {},
+        element('a', {textContent: '↩ Mark Schumaker',href: '/'})
+      )
+    )
+  }
 
   return (
     element('nav', {},
-      element('div', {},
-        element('a', {
-          textContent: '↩ Mark Schumaker',
-          href: '/',
-          style: {display: pathname === '/' ? 'none' : 'block'}
-        })
-      ),
-      element('div', {},
-        element('a', {
-          textContent: 'About',
-          href: '#about',
-        }),
-        element('a', {
-          textContent: 'Work',
-          href: '#work',
-        }),
-        element('a', {
-          textContent: 'Skills',
-          href: '#skills',
-        }),
-        element('a', {
-          textContent: 'Contact',
-          href: '#contact',
-        }),
-        element('a', {
-          className: 'resume',
-          textContent: 'Resume',
-          href: '/mark-schumaker-resume.pdf',
-        })
-      )
+      element('a', {
+        textContent: 'About',
+        href: '#about',
+      }),
+      element('a', {
+        textContent: 'Work',
+        href: '#work',
+      }),
+      element('a', {
+        textContent: 'Skills',
+        href: '#skills',
+      }),
+      element('a', {
+        textContent: 'Contact',
+        href: '#contact',
+      }),
+      element('a', {
+        className: 'resume',
+        textContent: 'Resume',
+        href: '/mark-schumaker-resume.pdf',
+      })
     )
   )
 }
