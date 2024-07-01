@@ -1,4 +1,9 @@
-const postBaseURL = 'https://raw.githubusercontent.com/MarkSchu/writing-on-software/main';
+const basePostUrl = 'https://raw.githubusercontent.com/MarkSchu/writing-on-software/main';
+const skills = [
+  'Frontend', 'Full Stack', 'JavaScript', 'React', 'TypeScript', 'Node', 'Jest', 'Express', 'Hapi', 'Redux', 
+  'Sass', 'Less', 'Webpack', 'GraphQL', 'MongoDB', 'SQL', 'CSS/HTML', 'Design Patterns', 
+  'RESTful APIs', 'Responsive Design', 'A11y'
+];
 
 function setStyles(el, attrs) {
   const styles = attrs['style'];
@@ -34,36 +39,43 @@ function repeat(tag, attrs, list, createEl) {
   return el;
 }
 
-const skills = [
-  'Frontend', 'Full Stack', 'JavaScript', 'React', 'TypeScript', 'Node', 'Jest', 'Express', 'Hapi', 'Redux', 
-  'Sass', 'Less', 'Webpack', 'GraphQL', 'MongoDB', 'SQL', 'CSS/HTML', 'Design Patterns', 
-  'RESTful APIs', 'Responsive Design', 'A11y'
-];
-
 function Nav() {
+
+  const { pathname } = window.location;
+  
+
   return (
     element('nav', {},
-      element('a', {
-        textContent: 'About',
-        href: '#about',
-      }),
-      element('a', {
-        textContent: 'Work',
-        href: '#work',
-      }),
-      element('a', {
-        textContent: 'Skills',
-        href: '#skills',
-      }),
-      element('a', {
-        textContent: 'Contact',
-        href: '#contact',
-      }),
-      element('a', {
-        className: 'resume',
-        textContent: 'Resume',
-        href: '/mark-schumaker-resume.pdf',
-      })
+      element('div', {},
+        element('a', {
+          textContent: '↩ Mark Schumaker',
+          href: '/',
+          style: {display: pathname === '/' ? 'none' : 'block'}
+        })
+      ),
+      element('div', {},
+        element('a', {
+          textContent: 'About',
+          href: '#about',
+        }),
+        element('a', {
+          textContent: 'Work',
+          href: '#work',
+        }),
+        element('a', {
+          textContent: 'Skills',
+          href: '#skills',
+        }),
+        element('a', {
+          textContent: 'Contact',
+          href: '#contact',
+        }),
+        element('a', {
+          className: 'resume',
+          textContent: 'Resume',
+          href: '/mark-schumaker-resume.pdf',
+        })
+      )
     )
   )
 }
@@ -74,6 +86,12 @@ function Footer() {
  )
 }
 
+function HeaderPost() {
+  return (
+    element('header', {})
+  )
+}
+
 function Post() {
 
   let article;
@@ -81,24 +99,25 @@ function Post() {
   const onPostLoad = (html) => {
     article.innerHTML = html;
   }
+
+  const fetchPost = () => {
+    fetch(`${basePostUrl}/${location.pathname}/post.html`)
+    .then((response) => response.text())
+    .then(onPostLoad)
+    .catch((err) => {
+      console.log(err)
+      alert('Oops, something went wrong!')
+    });
+  }
   
-  fetch(`https://raw.githubusercontent.com/MarkSchu/writing-on-software/main/foo/bar.html`)
-  .then((response) => {
-    // if response.ok
-    return response.text()
-  })
-  .then((html) => {
-    onPostLoad(html);
-  })
-  .catch((err) => {
-    console.log(err)
-    alert('Broken.')
-  });
-  
+  fetchPost();
+
   return (
-    element('div', {},
+    element('div', {className: 'post'},
       Nav(),
-      article = element('article', {}),
+      element('main', {},
+        article = element('article', {}),
+      ),
       Footer()
     )
   )
@@ -110,11 +129,11 @@ function App() {
 
   const onPostsLoad = (posts) => {
     listWrapper.appendChild(
-      repeat('ol', {}, posts, ({name, url}) =>
+      repeat('ol', {}, posts, ({name, slug}) =>
         element('li', {},
           element('a', {
-            textContent: name,
-            href: url,
+            innerHTML: name,
+            href: slug,
           })
         )
       )
@@ -122,7 +141,7 @@ function App() {
   }
 
   const fetchRecentPosts = () => {
-    return fetch(`${postBaseURL}/published.json`)
+    return fetch(`${basePostUrl}/published.json`)
     .then(response => response.json())
     .then(onPostsLoad)
     .catch((e) => alert('something went wrong fetching posts'))
@@ -131,7 +150,7 @@ function App() {
   fetchRecentPosts();
   
   return (
-    element('div', {},
+    element('div', {className: 'home'},
       Nav(),
       element('main', {},
         element('header', {},
@@ -209,6 +228,19 @@ function App() {
   )
 }
 
+function router() {
+  const {pathname} = window.location;
+  if (pathname === '/') {
+    return App()
+  }
+  if (pathname.startsWith('/posts/')) {
+    return Post();
+  }
+  // TODO
+  // if (pathname === '/posts') {
+  //   return Posts();
+  // }
+}
 document.body.appendChild(
   window.location.pathname === '/'
   ? App()
