@@ -46,7 +46,7 @@ function Nav() {
   if (pathname !== '/') {
     return (
       element('nav', {},
-        element('a', {textContent: '↩ Mark Schumaker',href: '/'})
+        element('a', {textContent: '< Mark Schumaker',href: '/'})
       )
     )
   }
