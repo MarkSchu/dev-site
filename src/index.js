@@ -188,6 +188,8 @@ function App() {
             Even though I prefer the frontend, I have loads of <b>Full-Stack</b> experience and really enjoy those roles too. I'm passionate
             about simple solutions, avoiding complexity, and writing code that is both readable and adaptable.`}
           ),
+          element('p', {textContent: `I'm currently working on a Next.js app for exchanging native plants.`}
+          ),
           element('p', {innerHTML: `I'm also passionate about learning and have experience with loads of other
             technologies from Python to Haskell to WebGL. I spend a lot of time mulling over more abstract topics like
             software architecture, design, and programming paradigms. Right now, I'm reading through 
