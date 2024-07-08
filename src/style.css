@@ -9,7 +9,7 @@ body {
     background-color: white;
 }
 
-p, h1, h2, h3, a, .email {
+p, h1, h2, h3, a, .email, li, code {
     color:#122C34;
 }
 
