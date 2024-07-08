@@ -157,6 +157,7 @@ section h2 {
     background-color: white;
     border: 1px solid #2A4494;
     color: #122C34;
+    box-shadow: 0.2rem 0.2rem #44CFCB;
 }
 
 @media (max-width: 670px) {
