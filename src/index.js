@@ -93,13 +93,32 @@ function HeaderPost() {
 function Post() {
 
   let article;
+  let title;
+  let subtitle;
 
   const onPostLoad = (html) => {
-    article.innerHTML = html;
+    article.innerHTML = (`
+      <header>
+        <h1>${title}</h1>
+        <h2>${subtitle}</h2>
+      </header>
+      ${html}
+    `);
+  }
+
+  const setTitles = (json) => {
+    let result = json.find(item => {
+      return item.slug === location.pathname;
+    });
+    title = result.title;
+    subtitle = result.subtitle;
   }
 
   const fetchPost = () => {
-    fetch(`${basePostUrl}/${location.pathname}/post.html`)
+    fetch(`${basePostUrl}/published.json`)
+    .then(response => response.json())
+    .then(setTitles)
+    .then(() => fetch(`${basePostUrl}/${location.pathname}.html`))
     .then((response) => response.text())
     .then(onPostLoad)
     .catch((err) => {
@@ -127,10 +146,10 @@ function App() {
 
   const onPostsLoad = (posts) => {
     listWrapper.appendChild(
-      repeat('ol', {}, posts, ({name, slug}) =>
+      repeat('ol', {}, posts, ({title, subtitle, slug}) =>
         element('li', {},
           element('a', {
-            innerHTML: name,
+            innerHTML: `${title} - ${subtitle}`,
             href: slug,
           })
         )
@@ -169,6 +188,7 @@ function App() {
             element('div', {className: 'email', textContent: 'm.schumaker235@gmail.com'})
           )
         ),
+
         element('section', {id: 'about'},
           element('h2', {textContent: 'ABOUT'}),
           element('p', {textContent: `I started coding through Philosophy. Back when I was working on my 
@@ -223,6 +243,7 @@ function App() {
           listWrapper = element('div', {})
         )
       ),
+
       Footer()
     )
   )
