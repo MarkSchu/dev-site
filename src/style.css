@@ -13,6 +13,10 @@ p, h1, h2, h3, a, .email, li, code {
     color:#122C34;
 }
 
+p, code, li, a {
+    font-size: 1rem;
+}
+
 p, li {
     line-height: 1.75;
 }
