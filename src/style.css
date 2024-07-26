@@ -21,6 +21,10 @@ p, li {
     line-height: 1.75;
 }
 
+a {
+    text-decoration: none;
+}
+
 nav {
     display: flex;
     justify-content: right;
@@ -29,7 +33,7 @@ nav {
 
 nav a {
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     margin-left: 2rem;
 }
 
@@ -37,12 +41,17 @@ nav a:hover {
     color: #44CFCB;
 }
 
-.post nav {
+.writing {
     justify-content: left;
 }
 
-.post nav a {
+.writing a {
     margin: 0;
+    margin-right: 1rem;
+}
+
+.writing span {
+    margin: 0 1rem;
 }
 
 main {
@@ -128,7 +137,8 @@ header p {
 
 .home header .email {
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
+    margin-right: 1rem;
 }
 
 img {
@@ -180,22 +190,6 @@ section h2 {
 }
 
 @media (max-width: 500px) {
-    nav {
-        justify-content: space-between;
-    }
-    nav a {
-        font-size: 0.7rem;
-        margin: 0;
-    }
-    .resume {
-        padding: 0;
-        border: none; 
-    }
-
-    .post nav a {
-        font-size: 1rem;
-    }
-
     img {
         height: 1.5rem;
     }

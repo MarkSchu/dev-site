@@ -1,0 +1,116 @@
+/* UNIVERSAL & TAG LEVEL */
+
+body {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+}
+
+ul {
+  padding: 0 1rem;
+}
+
+p, h1, h2, h3, a, .email, li, code {
+  color:#122C34;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #44CFCB;
+}
+
+a h2:hover {
+  color: #44CFCB;
+}
+
+code, li, p, a {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* SPECIAL & UNIQUE */
+
+.pill {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 1.5rem;
+  font-weight: 600;    
+  background-color: white;
+  border: 1px solid #122C34;
+  color: #122C34;
+  box-shadow: 0.2rem 0.2rem #122C34;
+}
+
+.icon {
+  filter: brightness(0%);
+  height: 2rem;
+  display: block;
+  margin-right: 1rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1.2;
+} 
+
+.hero h2 {
+  margin: 0;
+  font-size: 3rem;
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+  .hero h2 {
+    font-size: 1.2rem;
+  }
+}
+
+.hero .hero-links {
+  display: flex;
+  align-items: center;
+}
+
+/* LAYOUT */
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0 1rem;
+}
+
+.main {
+  max-width: 660px;
+  margin: 4rem auto 10rem auto;
+}
+
+.footer { 
+  margin-top: auto;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.75;
+  padding: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  font-weight: 600;
+  justify-content: right;
+}
+
+.nav a {
+  margin-left: 1rem;
+}
+
+.section, .article {
+  margin-top: 4rem;
+}

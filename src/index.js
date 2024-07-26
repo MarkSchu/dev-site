@@ -76,58 +76,47 @@ const fetchPublished = (onPublishedLoad) => {
 function Nav() {
 
   const { pathname } = window.location;
-  
-  if (pathname !== '/') {
-    return (
-      element('nav', {},
-        element('a', {textContent: '< Mark Schumaker',href: '/'})
-      )
-    )
-  }
 
   return (
-    element('nav', {},
+    element('nav', {className: 'nav'},
+      (pathname === '/'
+        ? element('span', {})
+        : element('a', {
+          textContent: 'Home',
+          href: '/',
+        })
+      ),
       element('a', {
-        textContent: 'About',
-        href: '#about',
+        textContent: 'Writing',
+        href: '/writing',
       }),
-      element('a', {
-        textContent: 'Work',
-        href: '#work',
-      }),
-      element('a', {
-        textContent: 'Skills',
-        href: '#skills',
-      }),
-      element('a', {
-        textContent: 'Contact',
-        href: '#contact',
-      }),
-      element('a', {
-        className: 'resume',
-        textContent: 'Resume',
-        href: '/mark-schumaker-resume.pdf',
-      })
+      (pathname !== '/'
+        ? element('span', {})
+        : element('a', {
+          textContent: 'Resume',
+          href: '/mark-schumaker-resume.pdf',
+        })
+      )
     )
   )
 }
 
 function Footer() {
  return (
-  element('footer', {innerHTML: 'created by mark | in vanilla js | deployed on netlify'})
+  element('footer', {
+    className: 'footer',
+    textContent: 'created by mark | vanilla js & css | netlify'})
  )
 }
 
 // pages
-
-
 function Post() {
 
   function NoteHeader(postdata) {
     return (
       element('header', {},
-        element('h1', {innerHTML: `Notes on <br>${postdata.noteTitle}<br> <span>by ${postdata.author}</span>`}),
-        element('h2', {textContent: postdata.postTitle})
+        element('h2', {innerHTML: `Notes on <i>${postdata.noteTitle}</i> <span>by ${postdata.author}</span>`}),
+        element('h3', {textContent: postdata.postTitle})
       )
     )
   }
@@ -161,7 +150,6 @@ function Post() {
     .then(response => response.text())
     .then(html => { document.querySelector('article').innerHTML = html; })
     .catch((err) => {
-      console.log(err)
       alert('Oops, something went wrong!')
     });
   } 
@@ -170,11 +158,11 @@ function Post() {
   fetchPost()
 
   return (
-    element('div', {className: 'post'},
+    element('div', {className: 'layout'},
       Nav(),
-      element('main', {},
+      element('main', {className: 'main'},
         element('header', {}),
-        element('article', {}),
+        element('article', {className: 'article'}),
       ),
       Footer()
     )
@@ -187,10 +175,10 @@ function Writing() {
     const el = document.getElementById('notes');
     const { notes } = published;
     el.appendChild(
-      repeat('ol', {}, notes, note => 
-        element('li', {},
-          element('div', {textContent: `${note.title}, by ${note.author}`}),
-          repeat('ol', {}, note.posts, post =>
+      repeat('div', {}, notes, note => 
+        element('div', {},
+          element('h2', {innerHTML: `Notes on <i>${note.title}</i>, by ${note.author}`}),
+          repeat('ul', {}, note.posts, post =>
             element('li', {},
               element('a', {
                 textContent: `${post.title}`,
@@ -226,16 +214,20 @@ function Writing() {
   fetchPublished(onPublishedLoad);
 
   return (
-    element('div', {className: 'writing'},
+    element('div', {className: 'layout'},
       Nav(),
-      element('main', {},
-        element('h1', {textContent: 'Writing'}),
-        element('section', {id: 'notes'},
-          element('h2', {textContent: 'Notes'}),
+      element('main', {className: 'main'},
+        element('header', {},
+          element('h1', {textContent: 'Writing'}),
+          element('p', {innerHTML: `I really like to think about software design, so I decided to start writing as a way to
+            think through ideas and clarify my thoughts. Currently, I'm reading a book called <i>The Philosophy of 
+            Software Design</i> by John Ousterhout and responding to it.`
+          }),
         ),
-        element('section', {id: 'posts'},
-          element('h2', {textContent: 'Posts'})
-        )
+        element('section', {id: 'notes', className: 'section'}),
+        // element('section', {id: 'posts'},
+        //   element('h2', {textContent: 'Misc Posts'})
+        // )
       ),
       Footer()
     )
@@ -244,40 +236,47 @@ function Writing() {
 
 function Home() {
   return (
-    element('div', {className: 'home'},
+    element('div', {className: 'layout'},
       Nav(),
-      element('main', {},
-        element('header', {},
+      element('main', {className: 'main'},
+
+        // header
+        element('header', {className: 'hero'},
           element('h1', {innerHTML: 'Mark <br/>Schumaker'}),
           element('h2', {textContent: 'Frontend Engineer'}),
           element('p', {textContent: 'I build apps and websites with JavaScript'}),
-          element('div', {className: 'links-email'},
+          element('div', {className: 'hero-links'},
             element('a', {href: 'https://github.com/markschu'},
-              element('img', { src: './assets/github-mark.png' })
+              element('img', { 
+                className: 'icon',
+                src: './assets/github-mark.png',
+              })
             ),
             element('a', {href: 'https://www.linkedin.com/in/mark-schumaker-5980a0a2/'},
-              element('img', { src: './assets/LI-in-Bug.png' })
-            ),
-            element('div', {className: 'email', textContent: 'm.schumaker235@gmail.com'})
+              element('img', { 
+                className: 'icon',
+                src: './assets/LI-in-Bug.png' 
+              })
+            )
           )
         ),
 
         // about
-        element('section', {id: 'about'},
-          element('h2', {textContent: 'ABOUT'}),
+        element('section', {className: 'section'},
+          element('h2', {textContent: 'About'}),
           element('p', {textContent: `I started coding through Philosophy. Back when I was working on my 
             Masters, I thought a lot about logic and computation and picked up programming as 
             a way to play around with the ideas. Eventually the hobby turned into a profession and I've 
             been doing it for 10 years.`}
           ),
-          element('p', {textContent: `When I'm away from my computer, I like to spend time with my family and friends, 
+          element('p', {textContent: `I live in Richmond, VA. When I'm away from my computer, I like to spend time with my family and friends, 
             read philosophy books, and hike.`}),
-            element('p', {textContent: `I live in Richmond, VA.`})
+            element('p', {innerHTML: `<b>m.schumaker235@gmail.com</b> | <b>248-933-1738</b>`}),
         ),
 
         // work
-        element('section', {id: 'work'},
-          element('h2', {textContent: 'WORK'}),
+        element('section', {className: 'section'},
+          element('h2', {textContent: 'Work'}),
           element('p', {innerHTML: `My main focus these days is building Node apps with React, TypeScript,
             and other tools in the JavaScript Ecosystem. I've been doing that for 8 years. 
             Even though I prefer the frontend, I have loads of <b>Full-Stack</b> experience and really enjoy those roles too. I'm passionate
@@ -288,13 +287,13 @@ function Home() {
           element('p', {innerHTML: `I'm also passionate about learning and have experience with loads of other
             technologies from Python to Haskell to WebGL. I spend a lot of time mulling over more abstract topics like
             software architecture, design, and programming paradigms. Right now, I'm reading through 
-            "A Philosophy of Software Design" by John Ousterhout.`}
+            <i>A Philosophy of Software Design</i> by John Ousterhout.`}
           )
         ),
 
         // skills 
-        element('section', {id: 'skills'}, 
-          element('h2', {textContent: 'SKILLS'}),
+        element('section', {className: 'section'}, 
+          element('h2', {textContent: 'Skills'}),
           repeat('div', {className: 'skill-list'}, skills, (skill) =>
             element('div', {className: 'pill', textContent: skill})
           ),
@@ -304,20 +303,15 @@ function Home() {
             I feel like I can learn pretty much anything.`}),
         ),
 
-        // contact
-        element('section', {id: 'contact'}, 
-          element('h2', {textContent: 'Contact'}),
-          element('p', {textContent: `m.schumaker235@gmail.com`}),
-          element('p', {textContent: `248-933-1738`}),
-        ),
-
         // writing
-        element('section', {id: 'writing'},
-          element('h2', {textContent: 'Writing'}),
-          element('p', {textContent: `I really like to think about software design, so I decided to start writing as a way 
-            think through ideas and clarify my thoughts. Currently, I'm reading though a book called "The Philosophy of 
-            Software Design" by John Ousterhout and responding to it.
-          `}),
+        element('section', {className: 'section'},
+          element('a', {href: '/writing'},
+            element('h2', {textContent: 'Writing'})
+          ),
+          element('p', {innerHTML: `I really like to think about software design, so I decided to start writing as a way to
+            think through ideas and clarify my thoughts. Currently, I'm reading a book called <i>The Philosophy of 
+            Software Design</i> by John Ousterhout and responding to it.`
+          }),
           listWrapper = element('div', {})
         )
       ),
