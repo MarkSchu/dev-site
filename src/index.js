@@ -5,6 +5,8 @@ const skills = [
   'RESTful APIs', 'Responsive Design', 'A11y'
 ];
 
+// utils
+
 function setStyles(el, attrs) {
   const styles = attrs['style'];
   for (var style in styles) {
@@ -38,6 +40,38 @@ function repeat(tag, attrs, list, createEl) {
   );
   return el;
 }
+
+// api calls 
+
+const fetchPublished = (onPublishedLoad) => {
+  return fetch(`${basePostUrl}/published-v2.json`)
+  .then(response => response.json())
+  .then(obj => {
+    obj.slugs = {};
+    obj.notes.forEach(note => {
+      note.posts.forEach(post => {
+        obj.slugs[`notes/${note.slug}/${post.slug}`] = {
+          noteTitle: note.title,
+          postTitle: post.title,
+          author: note.author,
+          type: 'note'
+        }
+      })
+    });
+    obj.posts.forEach(post => {
+      obj.slugs[`posts/${post.slug}`] = {
+        postTitle: post.title,
+        postSubtitle: post.subtitle,
+        type: 'post'
+      };
+    });
+    return obj;
+  })
+  .catch((e) => alert('something went wrong fetching posts'))
+  .then(onPublishedLoad || (() => {}))
+}
+
+// shared components
 
 function Nav() {
 
@@ -84,88 +118,131 @@ function Footer() {
  )
 }
 
-function HeaderPost() {
-  return (
-    element('header', {})
-  )
-}
+// pages
+
 
 function Post() {
 
-  let article;
-  let title;
-  let subtitle;
-
-  const onPostLoad = (html) => {
-    article.innerHTML = (`
-      <header>
-        <h1>${title}</h1>
-        <h2>${subtitle}</h2>
-      </header>
-      ${html}
-    `);
+  function NoteHeader(postdata) {
+    return (
+      element('header', {},
+        element('h1', {innerHTML: `Notes on <br>${postdata.noteTitle}<br> <span>by ${postdata.author}</span>`}),
+        element('h2', {textContent: postdata.postTitle})
+      )
+    )
   }
 
-  const setTitles = (json) => {
-    let result = json.find(item => {
-      return item.slug === location.pathname;
-    });
-    title = result.title;
-    subtitle = result.subtitle;
+  function PostHeader(postdata) {
+    return (
+      element('header', {},
+        element('header', {},
+          element('h1', {innerHTML: postdata.postTitle}),
+          element('h2', {textContent: postdata.postSubtitle}),
+        )
+      )
+    )
+  }
+
+  const onPublishedLoad = (published) => {
+    const path = location.pathname.replace('/writing/', '');
+    const postdata = published.slugs[path];
+    const headerEl = document.querySelector('header');
+    if (postdata.type === 'note') {
+      headerEl.appendChild(NoteHeader(postdata))
+    }
+    if (postdata.type === 'post') {
+      headerEl.appendChild(PostHeader(postdata))
+    }
   }
 
   const fetchPost = () => {
-    fetch(`${basePostUrl}/published.json`)
-    .then(response => response.json())
-    .then(setTitles)
-    .then(() => fetch(`${basePostUrl}/${location.pathname}.html`))
-    .then((response) => response.text())
-    .then(onPostLoad)
+    const path = location.pathname.replace('/writing/', '');
+    fetch(`${basePostUrl}/${path}.html`)
+    .then(response => response.text())
+    .then(html => { document.querySelector('article').innerHTML = html; })
     .catch((err) => {
       console.log(err)
       alert('Oops, something went wrong!')
     });
-  }
-  
-  fetchPost();
+  } 
+
+  fetchPublished(onPublishedLoad);
+  fetchPost()
 
   return (
     element('div', {className: 'post'},
       Nav(),
       element('main', {},
-        article = element('article', {}),
+        element('header', {}),
+        element('article', {}),
       ),
       Footer()
     )
   )
 }
 
-function App() {
+function Writing() {
 
-  let listWrapper;
-
-  const onPostsLoad = (posts) => {
-    listWrapper.appendChild(
-      repeat('ol', {}, posts, ({title, subtitle, slug}) =>
+  const renderNotes = (published) => {
+    const el = document.getElementById('notes');
+    const { notes } = published;
+    el.appendChild(
+      repeat('ol', {}, notes, note => 
         element('li', {},
-          element('a', {
-            innerHTML: `${title} - ${subtitle}`,
-            href: slug,
-          })
+          element('div', {textContent: `${note.title}, by ${note.author}`}),
+          repeat('ol', {}, note.posts, post =>
+            element('li', {},
+              element('a', {
+                textContent: `${post.title}`,
+                href: `writing/notes/${note.slug}/${post.slug}`
+              }),
+            )  
+          )
         )
       )
     )
   }
 
-  const fetchRecentPosts = () => {
-    return fetch(`${basePostUrl}/published.json`)
-    .then(response => response.json())
-    .then(onPostsLoad)
-    .catch((e) => alert('something went wrong fetching posts'))
+  const renderPosts = (published) => {
+    const el = document.getElementById('posts');
+    const { posts } = published;
+    el.appendChild(
+      repeat('ol', {}, posts, (post) =>
+        element('li', {},
+          element('a', {
+            textContent: `${post.title}, by ${post.author}`,
+            href: `writing/posts/${post.slug}`
+          })
+        )
+      )
+    )
+  }
+  
+  const onPublishedLoad = (published) => {
+    renderNotes(published);
+    renderPosts(published);
   }
 
-  fetchRecentPosts();
-  
+  fetchPublished(onPublishedLoad);
+
+  return (
+    element('div', {className: 'writing'},
+      Nav(),
+      element('main', {},
+        element('h1', {textContent: 'Writing'}),
+        element('section', {id: 'notes'},
+          element('h2', {textContent: 'Notes'}),
+        ),
+        element('section', {id: 'posts'},
+          element('h2', {textContent: 'Posts'})
+        )
+      ),
+      Footer()
+    )
+  )
+}
+
+function Home() {
   return (
     element('div', {className: 'home'},
       Nav(),
@@ -176,19 +253,16 @@ function App() {
           element('p', {textContent: 'I build apps and websites with JavaScript'}),
           element('div', {className: 'links-email'},
             element('a', {href: 'https://github.com/markschu'},
-              element('img', {
-                src: './assets/github-mark.png'
-              })
+              element('img', { src: './assets/github-mark.png' })
             ),
             element('a', {href: 'https://www.linkedin.com/in/mark-schumaker-5980a0a2/'},
-              element('img', {
-                src: './assets/LI-in-Bug.png'
-              })
+              element('img', { src: './assets/LI-in-Bug.png' })
             ),
             element('div', {className: 'email', textContent: 'm.schumaker235@gmail.com'})
           )
         ),
 
+        // about
         element('section', {id: 'about'},
           element('h2', {textContent: 'ABOUT'}),
           element('p', {textContent: `I started coding through Philosophy. Back when I was working on my 
@@ -201,6 +275,7 @@ function App() {
             element('p', {textContent: `I live in Richmond, VA.`})
         ),
 
+        // work
         element('section', {id: 'work'},
           element('h2', {textContent: 'WORK'}),
           element('p', {innerHTML: `My main focus these days is building Node apps with React, TypeScript,
@@ -217,6 +292,7 @@ function App() {
           )
         ),
 
+        // skills 
         element('section', {id: 'skills'}, 
           element('h2', {textContent: 'SKILLS'}),
           repeat('div', {className: 'skill-list'}, skills, (skill) =>
@@ -228,12 +304,14 @@ function App() {
             I feel like I can learn pretty much anything.`}),
         ),
 
+        // contact
         element('section', {id: 'contact'}, 
           element('h2', {textContent: 'Contact'}),
           element('p', {textContent: `m.schumaker235@gmail.com`}),
           element('p', {textContent: `248-933-1738`}),
         ),
 
+        // writing
         element('section', {id: 'writing'},
           element('h2', {textContent: 'Writing'}),
           element('p', {textContent: `I really like to think about software design, so I decided to start writing as a way 
@@ -249,21 +327,27 @@ function App() {
   )
 }
 
-function router() {
+// router
+function route() {
   const {pathname} = window.location;
+
   if (pathname === '/') {
-    return App()
+    return Home();
   }
-  if (pathname.startsWith('/posts/')) {
+
+  if (pathname.startsWith('/writing/posts/')) {
     return Post();
   }
-  // TODO
-  // if (pathname === '/posts') {
-  //   return Posts();
-  // }
+
+  if (pathname.startsWith('/writing/notes/')) {
+    return Post();
+  }
+
+  if (pathname.startsWith('/writing')) {
+    return Writing();
+  }
 }
+
 document.body.appendChild(
-  window.location.pathname === '/'
-  ? App()
-  : Post()
+  route()
 );
