@@ -146,8 +146,9 @@ function Post() {
 
   const fetchPost = () => {
     const path = location.pathname.replace('/writing/', '');
-    fetch(`${basePostUrl}/${path}.html`)
+    fetch(`${basePostUrl}/${path}.md`)
     .then(response => response.text())
+    .then(response => marked.parse(response))
     .then(html => { document.querySelector('article').innerHTML = html; })
     .catch((err) => {
       alert('Oops, something went wrong!')
@@ -225,9 +226,9 @@ function Writing() {
           }),
         ),
         element('section', {id: 'notes', className: 'section'}),
-        // element('section', {id: 'posts'},
-        //   element('h2', {textContent: 'Misc Posts'})
-        // )
+        element('section', {id: 'posts'},
+          // element('h2', {textContent: 'Misc Posts'})
+        )
       ),
       Footer()
     )
